@@ -4,6 +4,7 @@
 
 /// tools ///
 const express = require ('express')
+const helmet = require ('helmet')
 
 /// routers ///
 const routers = {
@@ -17,6 +18,7 @@ const routers = {
 
 const server = express ()
 
+server.use (helmet ())
 server.use (express.json ())
 // server.use (logger)
 

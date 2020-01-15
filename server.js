@@ -1,16 +1,37 @@
+/***********************************************************
+  server /
+***********************************************************/
+
+/// tools ///
 const express = require ('express')
+
+/// routers ///
+const routers = {
+  users : require ('./users/userRouter'),
+  posts : require ('./posts/postRouter'),
+}
+
+/***************************************
+  setup server
+***************************************/
 
 const server = express ()
 
-server.get ('/',  (req, res) => {
-  res.send (`<h2>Let's write some middleware!</h2>`)
+server.use (express.json ())
+// server.use (logger)
+
+server.use ('/api/users', routers.users)
+server.use ('/api/posts', routers.posts)
+
+server.get ('/',  (ri, ro) => {
+  ro.send (`<h2>Let's write some middleware!</h2>`)
 })
 
 /***************************************
   helpers
 ***************************************/
 
-function logger (req, res, next) {}
+function logger (ri, ro, next) {}
 
 /**************************************/
 

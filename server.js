@@ -8,8 +8,8 @@ const helmet = require ('helmet')
 
 /// routers ///
 const routers = {
-  users : require ('./users/userRouter'),
-  posts : require ('./posts/postRouter'),
+  users : require ('./users/users-router'),
+  posts : require ('./posts/posts-router'),
 }
 
 /***************************************

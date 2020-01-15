@@ -5,7 +5,7 @@ const r = require ('../')
   messages
 ***************************************/
 
-const message = {
+const messages = {
   'hello' : (path) => (r.message (
     `hello! i'm ~${path}.`
   )),
@@ -15,7 +15,7 @@ const message = {
   errors
 ***************************************/
 
-const error = {
+const errors = {
   '400' : (request, thing) => (r.error (
     `bad request to ${request} ${thing}`,
   )),
@@ -30,6 +30,6 @@ const error = {
 /**************************************/
 
 module.exports = {
-  message,
-  error
+  messages,
+  errors
 }

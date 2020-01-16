@@ -13,7 +13,7 @@ const respondWithError = require ('./respondWithError')
   definition
 ***************************************/
 
-const requireRequestConforms = (shape, customizer, restOfErrorMessage = '', restOfError = {}) => (ri, ro, next) => {
+const requireRequestConforms = (shape, restOfErrorMessage = '', restOfError = {}) => (ri, ro, next) => {
   const requestConforms = _.conforms (shape) (ri)
 
   if (not (requestConforms)) {

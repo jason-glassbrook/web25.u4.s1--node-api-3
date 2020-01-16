@@ -18,9 +18,16 @@ const routers = {
 
 const router = express.Router ()
 
+/// wares ///
+router.use ([
+  express.json (),
+])
+
+/// routers ///
 router.use ('/users', routers.users)
 router.use ('/posts', routers.posts)
 
+/// requests ///
 router.route ('*')
   .all (respondWithError (501))
 

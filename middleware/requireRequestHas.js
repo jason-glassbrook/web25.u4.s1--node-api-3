@@ -13,12 +13,13 @@ const respondWithError = require ('./respondWithError')
   definition
 ***************************************/
 
-const requireRequestHas = (paths) => (ri, ro, next) => {
+const requireRequestHas = (paths, ...rest) => (ri, ro, next) => {
   const condition = hasPaths (paths)
 
   if (not (condition (ri))) {
     respondWithError (400,
-      `-- request must have paths: ${_.join ('\n- ') (['', ...paths])}`
+      `-- request must have paths: ${_.join ('\n- ') (['', ...paths])}`,
+      ...rest,
     ) (ri, ro)
   }
   else {

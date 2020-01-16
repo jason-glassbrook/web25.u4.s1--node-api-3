@@ -13,14 +13,15 @@ const respondWithError = require ('./respondWithError')
   definition
 ***************************************/
 
-const requireRequestHasBody = () => (ri, ro, next) => {
+const requireRequestHasBody = (...rest) => (ri, ro, next) => {
   const isValid = _.conforms ({
     'body' : _.isObject,
   })
 
   if (not (isValid (ri))) {
     respondWithError (400,
-      `-- request must contain { body : object }`
+      `-- request must have a body`,
+      ...rest,
     ) (ri, ro)
   }
   else {

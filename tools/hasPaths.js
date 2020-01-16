@@ -11,7 +11,7 @@ const _ = require ('lodash/fp')
 ***************************************/
 
 const hasPaths = (paths) => /* (collection) => */ (
-  _.overEvery (
+  _.allPass (
     _.map (_.has) (paths)
   ) /* (collection) */
 )

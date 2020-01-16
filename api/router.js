@@ -23,7 +23,7 @@ const router = express.Router ()
 router.use ('/users', routers.users)
 router.use ('/posts', routers.posts)
 
-router.route ('/')
+router.route ('*')
   .all (respondWithError (501))
 
 /**************************************/

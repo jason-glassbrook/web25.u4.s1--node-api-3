@@ -10,10 +10,10 @@ const { errors } = require ('./tools/o')
   definition
 ***************************************/
 
-const respondWithError = (code, ...args) => (ri, ro) => {
+const respondWithError = (code, restOfErrorMessage = '') => (ri, ro) => {
   ro
     .status (code)
-    .json (errors[code] (...args) (ri, ro))
+    .json (errors[code] (restOfErrorMessage) (ri, ro))
 }
 
 /**************************************/

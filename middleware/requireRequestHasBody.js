@@ -12,7 +12,7 @@ const requireRequestHas = require ('./requireRequestHas')
 ***************************************/
 
 const requireRequestHasBody = (...rest) => (
-  requireRequestHas ([ 'doorknob' ], ...rest)
+  requireRequestHas ([ 'body' ], ...rest)
 )
 
 /**************************************/

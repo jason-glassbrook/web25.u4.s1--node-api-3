@@ -4,6 +4,7 @@
 
 /// tools ///
 const express = require ('express')
+const { respondWithError } = require ('../../middleware')
 
 /***************************************
   setup router
@@ -14,33 +15,39 @@ const router = express.Router ()
 /// wares ///
 
 /// requests ///
-router.post ('/', (req, res) => {
-  // do your magic!
-})
+router.route ('/')
+  .get ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .post ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
 
-router.post ('/:id/posts', (req, res) => {
-  // do your magic!
-})
+router.route ('/:user_id')
+  .get ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .put ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .delete ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
 
-router.get ('/', (req, res) => {
-  // do your magic!
-})
-
-router.get ('/:id', (req, res) => {
-  // do your magic!
-})
-
-router.get ('/:id/posts', (req, res) => {
-  // do your magic!
-})
-
-router.delete ('/:id', (req, res) => {
-  // do your magic!
-})
-
-router.put ('/:id', (req, res) => {
-  // do your magic!
-})
+router.route ('/:user_id/posts')
+  .get ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .post ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
 
 /***************************************
   middleware

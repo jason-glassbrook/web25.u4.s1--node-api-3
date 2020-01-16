@@ -4,6 +4,7 @@
 
 /// tools ///
 const express = require ('express')
+const { respondWithError } = require ('../../middleware')
 
 /***************************************
   setup router
@@ -14,21 +15,25 @@ const router = express.Router ()
 /// wares ///
 
 /// requests ///
-router.get ('/', (req, res) => {
-  // do your magic!
-})
+router.route ('/')
+  .get ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
 
-router.get ('/:id', (req, res) => {
-  // do your magic!
-})
-
-router.delete ('/:id', (req, res) => {
-  // do your magic!
-})
-
-router.put ('/:id', (req, res) => {
-  // do your magic!
-})
+router.route ('/:post_id')
+  .get ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .put ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .delete ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
 
 /***************************************
   middleware

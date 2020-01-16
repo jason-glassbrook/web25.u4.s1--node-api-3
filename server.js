@@ -5,8 +5,10 @@
 /// tools ///
 const express = require ('express')
 const helmet = require ('helmet')
-const logger = require ('./middleware/logger')
-const respondWithError = require ('./middleware/respondWithError')
+const {
+  logger,
+  respondWithError,
+} = require ('./middleware')
 
 /// routers ///
 const routers = {

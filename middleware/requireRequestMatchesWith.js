@@ -13,14 +13,17 @@ const respondWithError = require ('./respondWithError')
   definition
 ***************************************/
 
-const requireRequestMatchesWith = (source, customizer, restOfErrorMessage = '', restOfError = {}) => (ri, ro, next) => {
-  const requestMatchesWith = _.isMatchWith (customizer) (source) (ri)
+const requireRequestMatchesWith = (shape, customizer, restOfErrorMessage = '', restOfError = {}) => (ri, ro, next) => {
+  const requestMatchesWith = _.isMatchWith (customizer) (shape) (ri)
 
   if (not (requestMatchesWith)) {
     respondWithError (
       400,
-      ` -- request must match with <source>` + restOfErrorMessage,
-      { source , ...restOfError },
+      ` -- request must match with <shape>` + restOfErrorMessage,
+      {
+        shape,
+        ...restOfError,
+      },
     ) (ri, ro)
   }
   else {

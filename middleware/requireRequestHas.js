@@ -18,8 +18,7 @@ const requireRequestHas = (paths, restOfErrorMessage = '') => (ri, ro, next) => 
 
   if (not (requestHas)) {
     respondWithError (400,
-      ` -- request must have: [ ${_.join (', ') (paths)} ]`,
-      restOfErrorMessage,
+      ` -- request must have: [ ${_.join (', ') (paths)} ]` + restOfErrorMessage,
     ) (ri, ro)
   }
   else {

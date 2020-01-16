@@ -8,7 +8,7 @@ const r = require ('../')
 const messages = {
   'hello' :
     () => (ri, ro) => (r.message (
-      `hello! i'm ~${ri.path}.`
+      `hello! i'm ~${ri.originalUrl}.`
     )),
 }
 
@@ -16,22 +16,31 @@ const messages = {
   errors
 ***************************************/
 
+const restOfError = (ri, ro) => ({
+  method : ri.method,
+  route : ri.originalUrl,
+})
+
 const errors = {
   '400' :
     (thing) => (ri, ro) => (r.error (
-      `bad request to ${request} ${thing}`,
+      `bad request to ${ri.method} ${thing}`,
+      restOfError (ri, ro),
     )),
   '404' :
     (thing, id) => (ri, ro) => (r.error (
-      `could not find ${thing} with id ${id}`,
+      `could not find ${thing} with id=${id}`,
+      restOfError (ri, ro),
     )),
   '500' :
     () => (ri, ro) => (r.error (
       `something bad happened`,
+      restOfError (ri, ro),
     )),
   '501' :
     () => (ri, ro) => (r.error (
-      `${ri.method} @ ${ri.path} not implemented ... yet?`,
+      `not implemented ... yet?`,
+      restOfError (ri, ro),
     )),
 }
 

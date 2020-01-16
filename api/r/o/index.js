@@ -25,6 +25,9 @@ const errors = {
   '500' : () => (r.error (
     `something bad happened`,
   )),
+  '501' : (request, path) => (r.error (
+    `${request} @ ${path} not implemented ... yet?`,
+  )),
 }
 
 /**************************************/

@@ -3,23 +3,30 @@
 ***********************************************************/
 
 const _ = require ('lodash/fp')
-// const log = require ('./log')
+const hasPaths = require ('./hasPaths')
 
 /***************************************
   definition
 ***************************************/
 
-const hasShapeOf = (shape) => (
+const hasShapeOf = /* (shape) => (object) => */ (
   _.flow ([
-    // log ('- :'),
     _.keys,
-    // log ('- :'),
-    _.difference (shape),
-    // log ('- :'),
-    _.isEmpty,
-    // log ('- :'),
-  ])
+    hasPaths,
+  ]) /* (shape) (object) */
 )
+
+// const old.hasShapeOf = (shape) => (
+//   _.flow ([
+//     // log ('- :'),
+//     _.keys,
+//     // log ('- :'),
+//     _.difference (_.keys (shape)),
+//     // log ('- :'),
+//     _.isEmpty,
+//     // log ('- :'),
+//   ])
+// )
 
 /**************************************/
 

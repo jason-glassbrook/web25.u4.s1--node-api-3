@@ -6,7 +6,7 @@
 ***********************************************************/
 
 const _ = require ('lodash/fp')
-const { not } = require ('../../tools')
+const { not } = require ('../tools')
 const respondWithError = require ('./respondWithError')
 
 /***************************************

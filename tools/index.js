@@ -1,6 +1,7 @@
 /**************************************/
 
 module.exports = {
+  not : require ('./not'),
   log : require ('./log'),
   logInit : require ('./logInit'),
   logExit : require ('./logExit'),

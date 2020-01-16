@@ -1,9 +1,9 @@
-const reso = require ('../res/o')
+const $ro = require ('./tools/o')
 
 const respondWithError = (code, ...args) => (ri, ro) => {
   ro
     .status (code)
-    .json (reso.errors[code] (...args) (ri, ro))
+    .json ($ro.errors[code] (...args) (ri, ro))
 }
 
 module.exports = respondWithError

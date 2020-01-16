@@ -15,23 +15,23 @@ const restOfError = (ri, ro) => ({
 
 const errors = {
   '400' :
-    (thing) => (ri, ro) => (error (
-      `bad request to ${ri.method} ${thing}`,
+    (restOfErrorMessage) => (ri, ro) => (error (
+      `bad request` + restOfErrorMessage,
       restOfError (ri, ro),
     )),
   '404' :
-    (thing, id) => (ri, ro) => (error (
-      `could not find ${thing} with id=${id}`,
+    (restOfErrorMessage) => (ri, ro) => (error (
+      `resource not found` + restOfErrorMessage,
       restOfError (ri, ro),
     )),
   '500' :
-    () => (ri, ro) => (error (
-      `something bad happened`,
+    (restOfErrorMessage) => (ri, ro) => (error (
+      `something bad happened` + restOfErrorMessage,
       restOfError (ri, ro),
     )),
   '501' :
-    () => (ri, ro) => (error (
-      `not implemented ... yet?`,
+    (restOfErrorMessage) => (ri, ro) => (error (
+      `not implemented ... yet?` + restOfErrorMessage,
       restOfError (ri, ro),
     )),
 }

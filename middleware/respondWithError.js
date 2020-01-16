@@ -4,7 +4,7 @@
   -> here -X
 ***********************************************************/
 
-const $ro = require ('./tools/o')
+const { errors } = require ('./tools/o')
 
 /***************************************
   definition
@@ -13,7 +13,7 @@ const $ro = require ('./tools/o')
 const respondWithError = (code, ...args) => (ri, ro) => {
   ro
     .status (code)
-    .json ($ro.errors[code] (...args) (ri, ro))
+    .json (errors[code] (...args) (ri, ro))
 }
 
 /**************************************/

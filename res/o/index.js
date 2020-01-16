@@ -6,9 +6,10 @@ const r = require ('../')
 ***************************************/
 
 const messages = {
-  'hello' : (path) => (r.message (
-    `hello! i'm ~${path}.`
-  )),
+  'hello' :
+    () => (ri, ro) => (r.message (
+      `hello! i'm ~${ri.path}.`
+    )),
 }
 
 /***************************************
@@ -16,18 +17,22 @@ const messages = {
 ***************************************/
 
 const errors = {
-  '400' : (request, thing) => (r.error (
-    `bad request to ${request} ${thing}`,
-  )),
-  '404' : (thing, id) => (r.error (
-    `could not find ${thing} with id ${id}`,
-  )),
-  '500' : () => (r.error (
-    `something bad happened`,
-  )),
-  '501' : (request, path) => (r.error (
-    `${request} @ ${path} not implemented ... yet?`,
-  )),
+  '400' :
+    (thing) => (ri, ro) => (r.error (
+      `bad request to ${request} ${thing}`,
+    )),
+  '404' :
+    (thing, id) => (ri, ro) => (r.error (
+      `could not find ${thing} with id ${id}`,
+    )),
+  '500' :
+    () => (ri, ro) => (r.error (
+      `something bad happened`,
+    )),
+  '501' :
+    () => (ri, ro) => (r.error (
+      `${ri.method} @ ${ri.path} not implemented ... yet?`,
+    )),
 }
 
 /**************************************/

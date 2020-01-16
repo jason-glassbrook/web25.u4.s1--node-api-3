@@ -6,6 +6,7 @@
 const express = require ('express')
 const helmet = require ('helmet')
 const {
+  timestamper,
   logger,
   respondWithError,
 } = require ('./middleware')
@@ -22,9 +23,11 @@ const routers = {
 const server = express ()
 
 /// wares ///
-server.use (helmet ())
-server.use (express.json ())
-server.use (logger)
+server.use ([
+  helmet (),
+  timestamper,
+  logger,
+])
 
 /// routers ///
 server.use ('/api', routers.api)

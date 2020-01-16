@@ -18,7 +18,7 @@ const requireRequestHas = (paths, ...rest) => (ri, ro, next) => {
 
   if (not (condition (ri))) {
     respondWithError (400,
-      `-- request must have paths: ${_.join ('\n- ') (['', ...paths])}`,
+      `-- request must have: ${_.join ('\n- ') (['', ...paths])}`,
       ...rest,
     ) (ri, ro)
   }

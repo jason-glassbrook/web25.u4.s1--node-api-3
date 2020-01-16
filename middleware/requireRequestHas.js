@@ -14,9 +14,9 @@ const respondWithError = require ('./respondWithError')
 ***************************************/
 
 const requireRequestHas = (paths, ...rest) => (ri, ro, next) => {
-  const condition = hasPaths (paths)
+  const requestHas = hasPaths (paths) (ri)
 
-  if (not (condition (ri))) {
+  if (not (requestHas)) {
     respondWithError (400,
       `-- request must have: ${_.join ('\n- ') (['', ...paths])}`,
       ...rest,

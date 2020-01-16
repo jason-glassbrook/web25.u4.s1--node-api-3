@@ -8,31 +8,32 @@ const { error } = require ('../')
   definition
 ***************************************/
 
-const restOfError = (ri, ro) => ({
-  method : ri.method,
-  route : ri.originalUrl,
+const buildRestOfError = (request, restOfError) => ({
+  method : request.method,
+  route : request.originalUrl,
+  ...restOfError,
 })
 
 const errors = {
   '400' :
-    (restOfErrorMessage = '') => (ri, ro) => (error (
+    (restOfErrorMessage = '', restOfError = {}) => (request) => (error (
       `bad request` + restOfErrorMessage,
-      restOfError (ri, ro),
+      buildRestOfError (request, restOfError),
     )),
   '404' :
-    (restOfErrorMessage = '') => (ri, ro) => (error (
+    (restOfErrorMessage = '', restOfError = {}) => (request) => (error (
       `resource not found` + restOfErrorMessage,
-      restOfError (ri, ro),
+      buildRestOfError (request, restOfError),
     )),
   '500' :
-    (restOfErrorMessage = '') => (ri, ro) => (error (
+    (restOfErrorMessage = '', restOfError = {}) => (request) => (error (
       `something bad happened` + restOfErrorMessage,
-      restOfError (ri, ro),
+      buildRestOfError (request, restOfError),
     )),
   '501' :
-    (restOfErrorMessage = '') => (ri, ro) => (error (
+    (restOfErrorMessage = '', restOfError = {}) => (request) => (error (
       `not implemented ... yet?` + restOfErrorMessage,
-      restOfError (ri, ro),
+      buildRestOfError (request, restOfError),
     )),
 }
 

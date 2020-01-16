@@ -1,5 +1,5 @@
 /***********************************************************
-  requireBody
+  requireRequestHasBody
 ------------------------------------------------------------
   -> here -> next
   -> here -X
@@ -13,7 +13,7 @@ const respondWithError = require ('./respondWithError')
   definition
 ***************************************/
 
-const requireBody = (thing) => (ri, ro, next) => {
+const requireRequestHasBody = (thing) => (ri, ro, next) => {
   const isValid = _.conforms ({
     'body' : _.isObject,
   })
@@ -30,4 +30,4 @@ const requireBody = (thing) => (ri, ro, next) => {
 
 /**************************************/
 
-module.exports = requireBody
+module.exports = requireRequestHasBody

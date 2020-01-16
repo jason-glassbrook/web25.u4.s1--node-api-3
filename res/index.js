@@ -12,7 +12,7 @@ const message = (text, rest = {}) => kvPairs (
 )
 
 const error = (text, rest = {}) => kvPairs (
-  [[ 'error', text ]], rest
+  [[ 'error', message (text, rest) ]]
 )
 
 /**************************************/

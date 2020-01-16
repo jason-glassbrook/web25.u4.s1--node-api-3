@@ -6,6 +6,7 @@
 const express = require ('express')
 const helmet = require ('helmet')
 const logger = require ('./middleware/logger')
+const respondWithError = require ('./middleware/respondWithError')
 
 /// routers ///
 const routers = {
@@ -18,15 +19,24 @@ const routers = {
 
 const server = express ()
 
+/// wares ///
 server.use (helmet ())
 server.use (express.json ())
 server.use (logger)
 
+/// routers ///
 server.use ('/api', routers.api)
 
-server.get ('/',  (ri, ro) => {
-  ro.send (`<h2>Let's write some middleware!</h2>`)
-})
+/// requests ///
+server.route ('/')
+  .get ((ri, ro) => {
+    ro
+      .status (200)
+      .send (`<h2>Let's write some middleware!</h2>`)
+  })
+
+server.route ('*')
+  .all (respondWithError (501))
 
 /**************************************/
 

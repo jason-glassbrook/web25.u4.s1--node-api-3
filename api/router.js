@@ -4,15 +4,13 @@
 
 /// tools ///
 const express = require ('express')
+const respondWithError = require ('../middleware/respondWithError')
 
 /// routers ///
 const routers = {
   users : require ('./users/router'),
   posts : require ('./posts/router'),
 }
-
-/// wares ///
-const respondWithError = require ('../middleware/respondWithError')
 
 /***************************************
   setup router

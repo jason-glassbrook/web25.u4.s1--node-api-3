@@ -3,8 +3,13 @@
 ***********************************************************/
 
 /// tools ///
+const _ = require ('lodash/fp')
 const express = require ('express')
-const { respondWithError } = require ('../../middleware')
+const {
+  requireRequestHasBody,
+  requireRequestConforms,
+  respondWithError,
+} = require ('../../middleware')
 
 /***************************************
   setup router
@@ -22,6 +27,8 @@ router.route ('/')
     (ri, ro) => {},
   ])
   .post ([
+    requireRequestHasBody (),
+    validateUser (),
     respondWithError (501),
     (ri, ro) => {},
   ])
@@ -32,6 +39,8 @@ router.route ('/:user_id')
     (ri, ro) => {},
   ])
   .put ([
+    requireRequestHasBody (),
+    validateUser (),
     respondWithError (501),
     (ri, ro) => {},
   ])
@@ -46,6 +55,8 @@ router.route ('/:user_id/posts')
     (ri, ro) => {},
   ])
   .post ([
+    requireRequestHasBody (),
+    validatePost (),
     respondWithError (501),
     (ri, ro) => {},
   ])
@@ -54,16 +65,30 @@ router.route ('/:user_id/posts')
   middleware
 ***************************************/
 
-function validateUserId (req, res, next) {
+function validateUserId (ri, ro, next) {
   // do your magic!
 }
 
-function validateUser (req, res, next) {
-  // do your magic!
+function validateUser (ri, ro, next) {
+  return requireRequestConforms (
+    {
+      'body' : {
+        'name' : _.isString,
+      }
+    },
+    ' -- { body : { name : string } }',
+  )
 }
 
-function validatePost (req, res, next) {
-  // do your magic!
+function validatePost (ri, ro, next) {
+  return requireRequestConforms (
+    {
+      'body' : {
+        'text' : _.isString,
+      }
+    },
+    ' -- { body : { text : string } }',
+  )
 }
 
 /**************************************/

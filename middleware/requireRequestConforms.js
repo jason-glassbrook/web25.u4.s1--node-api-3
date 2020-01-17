@@ -13,8 +13,18 @@ const respondWithError = require ('./respondWithError')
   definition
 ***************************************/
 
+function nestedConforms (object, source) {
+  if (_.isFunction (source)) {
+    return (source (object))
+  }
+  else {
+    return _.isMatchWith (nestedConforms) (source) (object)
+  }
+}
+
 const requireRequestConforms = (shape, restOfErrorMessage = '', restOfError = {}) => (ri, ro, next) => {
-  const requestConforms = _.conforms (shape) (ri)
+
+  const requestConforms = _.isMatchWith (nestedConforms) (shape) (ri)
 
   if (not (requestConforms)) {
     respondWithError (
